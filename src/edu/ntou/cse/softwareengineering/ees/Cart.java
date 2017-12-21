@@ -1,20 +1,18 @@
 package edu.ntou.cse.softwareengineering.ees;
 
-import java.lang.String;
 import java.util.*;
 
 public class Cart {
 	
-	private final int INVALID = -1;
-	private int cartId = INVALID;
-	private int userId = INVALID;
+	private int cartId = Utilities.INVALID;
+	private int userId = Utilities.INVALID;
 	private ArrayList<Integer> productIdList;
 	private ArrayList<Integer> ammountList;
 	private ArrayList<Integer> priceList;
 	private Date time;
 	
 	public Cart(int cartId, int userId) {
-		if(cartId != INVALID && userId == INVALID)
+		if(cartId != Utilities.INVALID && userId == Utilities.INVALID)
 		{
 			this.cartId = cartId;
 			this.userId = userId;
@@ -49,27 +47,50 @@ public class Cart {
 		return time;
 	}
 	
-	public boolean setAmmountList(ArrayList<Integer> ammountList){
-		if(ammountList != null) {
-			this.ammountList = ammountList;
+	public void setTime() {
+		time = new Date();
+	}
+	
+	public boolean addProduct(Product product){
+		if(product.isValid())
+		{
+			productIdList.add(product.getProductId());
+			ammountList.add(1);
+			priceList.add(product.getPrice());
+			setTime();
 			return true;
 		}
 		return false;
 	}
 	
-	public boolean setPriceList(ArrayList<Integer> priceList){
-		if(priceList != null) {
-			this.priceList = priceList;
+	public boolean addProduct(Product product, int ammount){
+		if(product.isValid())
+		{
+			productIdList.add(product.getProductId());
+			ammountList.add(ammount);
+			priceList.add(product.getPrice());
+			setTime();
 			return true;
 		}
 		return false;
 	}
 	
-	public boolean setProductIdList(ArrayList<Integer> productIdList){
-		if(productIdList != null) {
-			this.productIdList = productIdList;
+	public boolean removeProduct(int index){
+		if(index >= 0 && index < productIdList.size() && !productIdList.isEmpty())
+		{
+			productIdList.remove(index);
+			ammountList.remove(index);
+			priceList.remove(index);
+			setTime();
 			return true;
 		}
 		return false;
+	}
+	
+	public void clearCart() {
+		productIdList.clear();
+		ammountList.clear();
+		priceList.clear();
+		setTime();
 	}
 }

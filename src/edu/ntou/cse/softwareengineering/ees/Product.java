@@ -4,19 +4,18 @@ import java.lang.String;
 import java.util.*;
 
 public class Product {
-	
-	private final int INVALID = -1;
-	private int productId = INVALID;
-	private int holderId = INVALID;
+
+	private int productId = Utilities.INVALID;
+	private int holderId = Utilities.INVALID;
 	private String productName;
 	private String description;
-	private int price = INVALID;
+	private int price = Utilities.INVALID;
 	private ArrayList<String> tags;
 	
 	public Product(int productId, int holderId, String productName, String description,
 			int price, ArrayList<String> tags) 
 	{
-		if(productId != INVALID && holderId != INVALID)
+		if(productId != Utilities.INVALID && holderId != Utilities.INVALID)
 		{
 			this.productId = productId;
 			this.holderId = holderId;
@@ -85,5 +84,11 @@ public class Product {
 			return true;
 		}
 		return false;
+	}
+	
+	public boolean isValid() {
+		if(productId == Utilities.INVALID || holderId == Utilities.INVALID || productName == "")
+			return false;
+		return true;
 	}
 }
