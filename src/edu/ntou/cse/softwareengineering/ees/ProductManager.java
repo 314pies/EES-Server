@@ -4,31 +4,58 @@ import java.util.*;
 
 public class ProductManager {
 	
-	private ArrayList<Cart> historyCartList;
-	private Cart myCart;
+	private ArrayList<Order> historyOrderList;
+	private Order myOrder;
 	
-	public void searchCart() {
+	public void searchOrder() {
 		//get the list from server
-		historyCartList = new ArrayList<Cart>();
+		historyOrderList = new ArrayList<Order>();
 	}
 	
-	public Cart selectCart(int index) {
-		if(historyCartList.isEmpty())
+	public Order selectOrder(int index) {
+		if(historyOrderList.isEmpty())
 			return null;
 		else
-			if(index >= 0 && index < historyCartList.size())
-				return historyCartList.get(index);
+			if(index >= 0 && index < historyOrderList.size())
+				return historyOrderList.get(index);
 			else
 				return null;
 	}
 	
-	public void createNewCart() {
-		//call server and get the newest cartId
-		//int cartId =  
-		//Cart myCart(-1, UserAccount.getAccountId());
-		myCart = new Cart(Utilities.INVALID, Utilities.INVALID);
+	public void createNewOrder() {
+		//call server and get the newest orderId
+		//int orderId =  
+		//Order myOrder(-1, UserAccount.getAccountId());
+		myOrder = new Order(Utilities.INVALID, Utilities.INVALID);
 	}
 	
+	public void setOrder(Product product) {
+		myOrder.setProduct(product);
+	}
+	
+	public void setOrder(Product product, int ammount) {
+		myOrder.setProduct(product, ammount);
+	}
+	
+	public void submitOrder() {
+		if(myOrder.isValid())
+		{
+			//invoke server submit order
+			killOrder();
+		}
+	}
+	
+	//Clear the product, won't clear the orderId and userId
+	public void clearCart() {
+		myOrder.clear();
+	}
+	
+	//Kill order object
+	public void killOrder() {
+		myOrder = null;
+	}
+	
+	/*
 	public void insertProductToCart(Product product) {
 		if(product.isValid())
 			myCart.addProduct(product);
@@ -53,5 +80,5 @@ public class ProductManager {
 	//Kill the cart object
 	public void cancelCart() {
 		myCart = null;
-	}
+	}*/
 }
