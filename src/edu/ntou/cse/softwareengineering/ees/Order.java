@@ -2,14 +2,15 @@ package edu.ntou.cse.softwareengineering.ees;
 
 import java.util.*;
 
-public class Order {
+public class Order implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private int orderId = Utilities.INVALID;
 	private int userId = Utilities.INVALID;
 	private int productId = Utilities.INVALID;
 	private int ammount = Utilities.INVALID;
 	private int price = Utilities.INVALID;
-	private Date time;
+	private String time;
 	
 	public Order(int orderId, int userId) {
 		if(orderId != Utilities.INVALID && userId != Utilities.INVALID)
@@ -17,7 +18,7 @@ public class Order {
 			this.orderId = orderId;
 			this.userId = userId;
 		}
-		time = new Date();
+		time = new Date().toString();
 	}
 	
 	public int getOrderId() {
@@ -40,12 +41,12 @@ public class Order {
 		return price;
 	}
 	
-	public Date getTime() {
+	public String getTime() {
 		return time;
 	}
 	
 	public void setTime() {
-		time = new Date();
+		time = new Date().toString();
 	}
 	
 	public boolean setProduct(Product product){
