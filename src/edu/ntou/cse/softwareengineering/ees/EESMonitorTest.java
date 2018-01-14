@@ -25,7 +25,7 @@ public class EESMonitorTest
         try{
             //open an audio input stream
             //URL url = monitor.getClass().getClassLoader().getResource(soundURL);
-        	URL url = new File("./src/"+ soundURL).toURI().toURL();
+        	URL url = new File("./"+ soundURL).toURI().toURL();
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
             //Get sound clip
             Clip clip = AudioSystem.getClip();

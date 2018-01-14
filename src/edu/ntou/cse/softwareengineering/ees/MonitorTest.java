@@ -13,11 +13,11 @@ import javax.swing.JFrame;
  * @author Lien
  */
 public class MonitorTest {
-    public static void main(String[] args){
+    /*public static void main(String[] args){
         MonitorUI application = new MonitorUI();
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         application.setSize(400, 1000);
         application.setVisible(true);
-    }
+    }*/
 }
